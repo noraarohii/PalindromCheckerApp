@@ -1,63 +1,41 @@
-/**
- * ------------------------------------------------------------
- * MAIN CLASS - UseCase4PalindromeCheckerApp
- * ------------------------------------------------------------
- *
- * Use Case 4: Character Array Based Validation
- *
- * Description:
- * This class validates a palindrome by converting
- * the string into a character array and comparing
- * characters using the two-pointer technique.
- *
- * At this stage, the application:
- * - Converts string to char array
- * - Uses start and end pointers
- * - Compares characters efficiently
- * - Displays the result
- *
- * This reduces extra memory usage.
- *
- * @author Developer
- * @version 4.0
- */
+import java.util.Deque;
+import java.util.ArrayDeque;
 
-public class PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC4.
-     *
+     * Application entry point for UC7.
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Declare and initialize the input string.
-        String input = "radar";
+        // Define the input string
+        String input = "refer";
 
-        // Convert the string into a character array.
-        char[] chars = input.toCharArray();
+        System.out.println("Input : " + input);
 
-        // Initialize pointer at the beginning.
-        int start = 0;
+        // Create a Deque to store characters
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Initialize pointer at the end.
-        int end = chars.length - 1;
+        // Add each character to the deque
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);
+        }
 
-        // Assume palindrome initially.
+        // Flag to track palindrome result
         boolean isPalindrome = true;
 
-        // Continue comparison until pointers cross.
-        while (start < end) {
-            if (chars[start] != chars[end]) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
+            char first = deque.removeFirst();
+            char last = deque.removeLast();
+
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
         // Display result
-        System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
-}
